@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		37E3BCF11F447199008BF7FE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37E3BCF01F447199008BF7FE /* main.cpp */; };
+		37E3BCF91F447792008BF7FE /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E3BCF81F447792008BF7FE /* OpenGL.framework */; };
+		37E3BCFB1F44779F008BF7FE /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E3BCFA1F44779F008BF7FE /* CoreVideo.framework */; };
+		37E3BCFD1F4477A4008BF7FE /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E3BCFC1F4477A4008BF7FE /* IOKit.framework */; };
+		37E3BCFF1F4477AE008BF7FE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E3BCFE1F4477AE008BF7FE /* Cocoa.framework */; };
+		37E3BD031F44796C008BF7FE /* libglfw.3.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E3BD021F44796C008BF7FE /* libglfw.3.2.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +30,12 @@
 /* Begin PBXFileReference section */
 		37E3BCED1F447199008BF7FE /* glfw-game */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "glfw-game"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37E3BCF01F447199008BF7FE /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		37E3BCF81F447792008BF7FE /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		37E3BCFA1F44779F008BF7FE /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		37E3BCFC1F4477A4008BF7FE /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		37E3BCFE1F4477AE008BF7FE /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		37E3BD001F44795A008BF7FE /* libglfw.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.dylib; path = ../../../../../usr/local/Cellar/glfw/3.2.1/lib/libglfw.dylib; sourceTree = "<group>"; };
+		37E3BD021F44796C008BF7FE /* libglfw.3.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.2.dylib; path = ../../../../../usr/local/Cellar/glfw/3.2.1/lib/libglfw.3.2.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +43,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37E3BD031F44796C008BF7FE /* libglfw.3.2.dylib in Frameworks */,
+				37E3BCFF1F4477AE008BF7FE /* Cocoa.framework in Frameworks */,
+				37E3BCFD1F4477A4008BF7FE /* IOKit.framework in Frameworks */,
+				37E3BCFB1F44779F008BF7FE /* CoreVideo.framework in Frameworks */,
+				37E3BCF91F447792008BF7FE /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +59,7 @@
 			children = (
 				37E3BCEF1F447199008BF7FE /* glfw-game */,
 				37E3BCEE1F447199008BF7FE /* Products */,
+				37E3BCF71F447792008BF7FE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +77,19 @@
 				37E3BCF01F447199008BF7FE /* main.cpp */,
 			);
 			path = "glfw-game";
+			sourceTree = "<group>";
+		};
+		37E3BCF71F447792008BF7FE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				37E3BD021F44796C008BF7FE /* libglfw.3.2.dylib */,
+				37E3BD001F44795A008BF7FE /* libglfw.dylib */,
+				37E3BCFE1F4477AE008BF7FE /* Cocoa.framework */,
+				37E3BCFC1F4477A4008BF7FE /* IOKit.framework */,
+				37E3BCFA1F44779F008BF7FE /* CoreVideo.framework */,
+				37E3BCF81F447792008BF7FE /* OpenGL.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,7 +250,24 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 8PNJ3N88L7;
+				HEADER_SEARCH_PATHS = /usr/local/Cellar/glfw/3.2.1/include;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/glfw/3.2.1/lib,
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					OpenGL,
+					"-framework",
+					CoreVideo,
+					"-framework",
+					IOKit,
+					"-framework",
+					Cocoa,
+					"-lglfw",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = /usr/local/Cellar/glfw/3.2.1/lib;
 			};
 			name = Debug;
 		};
@@ -228,7 +275,24 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 8PNJ3N88L7;
+				HEADER_SEARCH_PATHS = /usr/local/Cellar/glfw/3.2.1/include;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/glfw/3.2.1/lib,
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					OpenGL,
+					"-framework",
+					CoreVideo,
+					"-framework",
+					IOKit,
+					"-framework",
+					Cocoa,
+					"-lglfw",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = /usr/local/Cellar/glfw/3.2.1/lib;
 			};
 			name = Release;
 		};
