@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		37BA15671F4829CE0092B618 /* libGLEW.2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 37BA15661F4829CE0092B618 /* libGLEW.2.1.0.dylib */; };
 		37E3BCF11F447199008BF7FE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37E3BCF01F447199008BF7FE /* main.cpp */; };
 		37E3BCF91F447792008BF7FE /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E3BCF81F447792008BF7FE /* OpenGL.framework */; };
 		37E3BCFB1F44779F008BF7FE /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E3BCFA1F44779F008BF7FE /* CoreVideo.framework */; };
@@ -28,6 +29,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		37BA15661F4829CE0092B618 /* libGLEW.2.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.2.1.0.dylib; path = ../../../../../usr/local/lib/libGLEW.2.1.0.dylib; sourceTree = "<group>"; };
+		37BA15681F482CB40092B618 /* point.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = point.vert; sourceTree = "<group>"; };
+		37BA15691F482CE10092B618 /* point.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = point.frag; sourceTree = "<group>"; };
 		37E3BCED1F447199008BF7FE /* glfw-game */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "glfw-game"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37E3BCF01F447199008BF7FE /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		37E3BCF81F447792008BF7FE /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -44,6 +48,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				37E3BD031F44796C008BF7FE /* libglfw.3.2.dylib in Frameworks */,
+				37BA15671F4829CE0092B618 /* libGLEW.2.1.0.dylib in Frameworks */,
 				37E3BCFF1F4477AE008BF7FE /* Cocoa.framework in Frameworks */,
 				37E3BCFD1F4477A4008BF7FE /* IOKit.framework in Frameworks */,
 				37E3BCFB1F44779F008BF7FE /* CoreVideo.framework in Frameworks */,
@@ -75,6 +80,8 @@
 			isa = PBXGroup;
 			children = (
 				37E3BCF01F447199008BF7FE /* main.cpp */,
+				37BA15681F482CB40092B618 /* point.vert */,
+				37BA15691F482CE10092B618 /* point.frag */,
 			);
 			path = "glfw-game";
 			sourceTree = "<group>";
@@ -82,6 +89,7 @@
 		37E3BCF71F447792008BF7FE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				37BA15661F4829CE0092B618 /* libGLEW.2.1.0.dylib */,
 				37E3BD021F44796C008BF7FE /* libglfw.3.2.dylib */,
 				37E3BD001F44795A008BF7FE /* libglfw.dylib */,
 				37E3BCFE1F4477AE008BF7FE /* Cocoa.framework */,
@@ -250,10 +258,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 8PNJ3N88L7;
-				HEADER_SEARCH_PATHS = /usr/local/Cellar/glfw/3.2.1/include;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/Cellar/glfw/3.2.1/include,
+					/usr/local/include,
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/Cellar/glfw/3.2.1/lib,
+					/usr/local/lib,
 				);
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -265,6 +277,7 @@
 					"-framework",
 					Cocoa,
 					"-lglfw",
+					"-lGLEW",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SYSTEM_FRAMEWORK_SEARCH_PATHS = /usr/local/Cellar/glfw/3.2.1/lib;
@@ -275,10 +288,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 8PNJ3N88L7;
-				HEADER_SEARCH_PATHS = /usr/local/Cellar/glfw/3.2.1/include;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/Cellar/glfw/3.2.1/include,
+					/usr/local/include,
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/Cellar/glfw/3.2.1/lib,
+					/usr/local/lib,
 				);
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -290,6 +307,7 @@
 					"-framework",
 					Cocoa,
 					"-lglfw",
+					"-lGLEW",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SYSTEM_FRAMEWORK_SEARCH_PATHS = /usr/local/Cellar/glfw/3.2.1/lib;
@@ -315,6 +333,7 @@
 				37E3BCF61F447199008BF7FE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
