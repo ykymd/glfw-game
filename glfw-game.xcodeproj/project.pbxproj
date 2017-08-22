@@ -29,6 +29,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3713546D1F4BE4C90002BE2D /* Object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Object.h; sourceTree = "<group>"; };
+		3713546E1F4BE7A00002BE2D /* Shape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shape.h; sourceTree = "<group>"; };
+		3713546F1F4BE9FA0002BE2D /* Window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Window.h; sourceTree = "<group>"; };
 		37BA15661F4829CE0092B618 /* libGLEW.2.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.2.1.0.dylib; path = ../../../../../usr/local/lib/libGLEW.2.1.0.dylib; sourceTree = "<group>"; };
 		37BA15681F482CB40092B618 /* point.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = point.vert; sourceTree = "<group>"; };
 		37BA15691F482CE10092B618 /* point.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = point.frag; sourceTree = "<group>"; };
@@ -80,8 +83,11 @@
 			isa = PBXGroup;
 			children = (
 				37E3BCF01F447199008BF7FE /* main.cpp */,
+				3713546E1F4BE7A00002BE2D /* Shape.h */,
 				37BA15681F482CB40092B618 /* point.vert */,
 				37BA15691F482CE10092B618 /* point.frag */,
+				3713546D1F4BE4C90002BE2D /* Object.h */,
+				3713546F1F4BE9FA0002BE2D /* Window.h */,
 			);
 			path = "glfw-game";
 			sourceTree = "<group>";

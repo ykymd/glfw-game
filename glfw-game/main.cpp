@@ -10,8 +10,11 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <memory>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include "Window.h"
+#include "Shape.h"
 
 GLboolean printShaderInfoLog(GLuint shader, const char *str)
 {
@@ -134,6 +137,14 @@ GLuint loadProgram(const char *vert, const char *frag)
     return vstat && fstat ? createProgram(vsrc.data(), fsrc.data()) : 0;
 }
 
+const Object::Vertex rectangleVertex[] =
+{
+    { -0.5f, -0.5f },
+    { 1.5f, -0.5f },
+    { 1.5f, 1.5f },
+    { -0.5f, 1.5f }
+};
+
 int main(int argc, const char * argv[])
 {
     // GLFWの初期化
@@ -154,17 +165,7 @@ int main(int argc, const char * argv[])
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     
     // ウィンドウを作成する
-    GLFWwindow *const window(glfwCreateWindow(640, 480, "Hello!", NULL, NULL));
-    if (window == NULL)
-    {
-        // ウィンドウが作成できなかった
-        std::cerr << "Can't create GLFW window." << std::endl;
-        glfwTerminate();
-        return 1;
-    }
-    
-    // 作成したウィンドウを OpenGL の処理対象にする
-    glfwMakeContextCurrent(window);
+    Window window;
     
     // GLEWを初期化する
     glewExperimental = GL_TRUE;
@@ -175,27 +176,31 @@ int main(int argc, const char * argv[])
         return 1;
     }
     
-    // 垂直同期のタイミングを待つようにする
-    glfwSwapInterval(1);
-    
     // 背景色を指定する
     glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
     
     const GLuint program(loadProgram("point.vert", "point.frag"));
     
+    const GLint sizeLoc(glGetUniformLocation(program, "size"));
+    const GLint scaleLoc(glGetUniformLocation(program, "scale"));
+    const GLint locationLoc(glGetUniformLocation(program, "location"));
+    
+    std::unique_ptr<const Shape> shape(new Shape(2, 4, rectangleVertex));
+    
     // ウィンドウが開いている間繰り返す
-    while (glfwWindowShouldClose(window) == GL_FALSE)
+    while (window.shouldClose() == GL_FALSE)
     {
         // ウィンドウを消去する
         glClear(GL_COLOR_BUFFER_BIT);
         // シェーダプログラムの使用開始
         glUseProgram(program);
-        //
-        // ここで描画処理を行う
-        //
+        // uniform変数に値を設定する
+        glUniform2fv(sizeLoc, 1, window.getSize());
+        glUniform1f(scaleLoc, window.getScale());
+        glUniform2fv(locationLoc, 1, window.getLocation());
+        // 描画処理
+        shape->draw();
         // カラーバッファを入れ替える
-        glfwSwapBuffers(window);
-        // イベントを取り出す
-        glfwWaitEvents();
+        window.swapBuffers();
     }
 }
