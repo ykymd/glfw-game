@@ -154,7 +154,7 @@ int main(int argc, const char * argv[])
         std::cerr << "GLFW Initialization failed." << std::endl;
         return 1;
     }
-    
+
     // 終了処理の登録
     atexit(glfwTerminate);
     
@@ -163,19 +163,10 @@ int main(int argc, const char * argv[])
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    
+
     // ウィンドウを作成する
     Window window;
-    
-    // GLEWを初期化する
-    glewExperimental = GL_TRUE;
-    if (glewInit() != GLEW_OK)
-    {
-        // GLEWの初期化に失敗
-        std::cerr << "Can't initialize GLEW" << std::endl;
-        return 1;
-    }
-    
+
     // 背景色を指定する
     glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
     
