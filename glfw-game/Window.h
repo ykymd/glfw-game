@@ -51,15 +51,17 @@ public:
         glfwSetKeyCallback(window, keyboard);
         // このインスタンスのポインタの記録
         glfwSetWindowUserPointer(window, this);
-        // ウインドウのサイズ変更（Retinaディスプレイ用にframebuffersizeを使う）
-        glfwSetFramebufferSizeCallback(window, resize);
+        // ウインドウのサイズ変更（Retinaディスプレイ用にframebuffersizeも使う）
+        glfwSetWindowSizeCallback(window, onWindowSizeChanged);
+        glfwSetFramebufferSizeCallback(window, onFrameBufferSizeChanged);
         // マウスホイール
         glfwSetScrollCallback(window, wheel);
         
-        // Retina解像度の都合でframebuffer sizeを取得
+        // ウィンドウのリサイズ
         GLint w, h;
         glfwGetFramebufferSize(window, &w, &h);
-        resize(window, w, h);
+        onFrameBufferSizeChanged(window, w, h);
+        onWindowSizeChanged(window, width, height);
 
         location[0] = location[1] = 0.0f;
     }
@@ -108,10 +110,17 @@ public:
         {
             double x, y;
             glfwGetCursorPos(window, &x, &y);
-            
+
+            std::cout << "x: " << x << " y: " << y << std::endl;
+
             // [0, 1]を[-1, 1]に変換
+            // (x - size[0] / 2.0f) 
+            // (x / size[0]) * 2.0f - 1.0f
             location[0] = static_cast<GLfloat>(x) * 2.0f / size[0] - 1.0f;
             location[1] = 1.0f - static_cast<GLfloat>(y) * 2.0f / size[1];
+
+            std::cout << "sizex: " << size[0] << " sizey: " << size[1] << std::endl;
+            std::cout << "x: " << location[0] << " y: " << location[1] << std::endl;
         }
     }
     
@@ -119,11 +128,15 @@ public:
     GLfloat getScale() const { return s; }
     const GLfloat *getLocation() const { return location; }
     
-    static void resize(GLFWwindow *const window, int width, int height)
+    static void onFrameBufferSizeChanged(GLFWwindow *const window, int width, int height)
     {
         glViewport(0, 0, width, height);
-        std::cout << "width: " << width << " height: " << height << std::endl;
-        
+        std::cout << "fwidth: " << width << " fheight: " << height << std::endl;
+    }
+
+    static void onWindowSizeChanged(GLFWwindow *const window, int width, int height)
+    {
+        std::cout << "wwidth: " << width << " wheight: " << height << std::endl;
         Window *const instance(static_cast<Window *>(glfwGetWindowUserPointer(window)));
         
         if (instance != NULL)
@@ -138,7 +151,6 @@ public:
     
     static void wheel(GLFWwindow *window, double x, double y)
     {
-        std::cout << "wheel" << std::endl;
         Window *const instance(static_cast<Window *>(glfwGetWindowUserPointer(window)));
         if (instance != NULL)
         {
@@ -148,7 +160,6 @@ public:
     
     static void keyboard(GLFWwindow *window, int key, int scancode, int action, int mods)
     {
-        std::cout << "keyboard" << std::endl;
         Window *const instance(static_cast<Window *>(glfwGetWindowUserPointer(window)));
         if (instance != NULL)
         {

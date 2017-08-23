@@ -140,9 +140,9 @@ GLuint loadProgram(const char *vert, const char *frag)
 const Object::Vertex rectangleVertex[] =
 {
     { -0.5f, -0.5f },
-    { 1.5f, -0.5f },
-    { 1.5f, 1.5f },
-    { -0.5f, 1.5f }
+    { 0.5f, -0.5f },
+    { 0.5f, 0.5f },
+    { -0.5f, 0.5f }
 };
 
 int main(int argc, const char * argv[])

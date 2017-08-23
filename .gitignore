@@ -34,3 +34,14 @@
 *.app
 
 
+
+
+### https://raw.github.com/github/gitignore/2b7d841c01806236d26e81f512095717396ebcb8/Global/VisualStudioCode.gitignore
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+

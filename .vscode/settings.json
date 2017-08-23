@@ -7,6 +7,12 @@
         "new": "cpp",
         "stdexcept": "cpp",
         "typeinfo": "cpp",
-        "ios": "cpp"
+        "__split_buffer": "cpp",
+        "bitset": "cpp",
+        "iterator": "cpp",
+        "memory": "cpp",
+        "string": "cpp",
+        "utility": "cpp",
+        "vector": "cpp"
     }
 }
