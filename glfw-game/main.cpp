@@ -13,8 +13,8 @@
 #include <memory>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include "Window.h"
-#include "Shape.h"
+#include "Window.hpp"
+#include "Shape.hpp"
 
 GLboolean printShaderInfoLog(GLuint shader, const char *str)
 {
@@ -158,7 +158,7 @@ int main(int argc, const char * argv[])
     // 終了処理の登録
     atexit(glfwTerminate);
     
-    // OpenGL Version 3.2 Core Profile
+    // OpenGLバージョンのヒントを与える(3.2 Core)
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);

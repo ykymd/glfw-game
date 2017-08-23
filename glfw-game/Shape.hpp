@@ -2,7 +2,7 @@
 #include <memory>
 
 // 図形データ
-#include "Object.h"
+#include "Object.hpp"
 
 // 図形の描画
 class Shape
